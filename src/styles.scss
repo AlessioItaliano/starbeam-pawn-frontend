@@ -1,0 +1,123 @@
+@import "fonts";
+@import "reset";
+@import "normalize.css/normalize.css";
+
+:root {
+  --black-cl: #000000;
+  --white-cl: #ffffff;
+  --blue-cl: #2b7af1;
+
+  --black-text-cl: #111111;
+  --white-text-cl: #ffffff;
+  --blue-text-cl: #2b7af1;
+  --red-text-cl: #ff0000;
+
+  --light-box-shadow: rgba(0, 0, 0, 0.2);
+  --btn-box-shadow: rgba(255, 122, 0, 0.2);
+
+  --orange-gradient: linear-gradient(90deg, #ff7a00 0.2%, #ffb039 99.82%);
+  --orange-gradient-reverse: linear-gradient(
+    180deg,
+    #ff7a00 0.2%,
+    #ffb039 99.82%
+  );
+}
+
+body {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+
+  font-family: "JetBrainsMono", sans-serif;
+
+  color: var(--black-text-cl);
+  background-color: var(--white-cl);
+  background-image: url(../public/assets/icons/background.svg);
+  height: 100vh;
+}
+
+/* ===================== TITLE ===================== */
+
+.title {
+  color: var(--blue-text-cl);
+
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+/* ===================== BUTTON ===================== */
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 200px;
+  padding: 15px 30px;
+  border-radius: 25px;
+  border: none;
+
+  cursor: pointer;
+
+  color: var(--white-text-cl);
+  background: var(--orange-gradient);
+  box-shadow: 0px 10px 20px 0px var(--btn-box-shadow);
+}
+
+.btn:focus,
+.btn:hover {
+  background: var(--orange-gradient-reverse);
+}
+
+/* ===================== FORM ===================== */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.form__label {
+  width: 100%;
+}
+
+.form__input {
+  width: 100%;
+  height: 42px;
+
+  padding: 11px 20px;
+  margin-top: 8px;
+  border-radius: 10px;
+
+  border: 1px solid var(--black-cl);
+}
+
+.error-message {
+  display: none;
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--red-text-cl);
+}
+
+.form__link {
+  color: var(--blue-text-cl);
+
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.form__input:not(:focus):not(:placeholder-shown):invalid {
+  border-color: var(--red-text-cl);
+}
+
+input:not(:focus):not(:placeholder-shown):invalid ~ .error-message {
+  display: block;
+}
+
+.form__input:not(:focus):not(:placeholder-shown):valid {
+  border-color: var(--black-cl);
+}
+
+/* ===================== BUTTON ===================== */

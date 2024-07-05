@@ -1,0 +1,46 @@
+<div class="login-page__container">
+  <h2 class="title">Welcome back!</h2>
+
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <label class="form__label">
+      Email
+      <input
+        formControlName="email"
+        class="form__input"
+        type="email"
+        name="userEmail"
+        placeholder="Enter your email address"
+        minlength="3"
+        size="30"
+        title="Please enter your email address in format default@example.com"
+        required
+      />
+      <p class="error-message">Please enter a valid e-mail address</p>
+    </label>
+
+    <label class="form__label">
+      Password
+      <input
+        formControlName="password"
+        class="form__input"
+        type="password"
+        name="userPassword"
+        placeholder="Enter your password"
+        autocomplete="new-password"
+        minlength="8"
+        maxlength="16"
+        pattern="[A-Za-z0-9]{8,16}"
+        title="Enter between 8 to 16 characters"
+        required
+      />
+      <p class="error-message">Please enter a valid password</p>
+    </label>
+
+    <p>
+      Don't have an account yet?
+      <a class="form__link" (click)="goToSignUp()">SIGN UP</a>
+    </p>
+
+    <button type="submit" class="btn">Enter</button>
+  </form>
+</div>

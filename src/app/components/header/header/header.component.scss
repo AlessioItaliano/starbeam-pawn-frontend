@@ -1,0 +1,19 @@
+// :host {
+//   width: 1200px;
+//   height: auto;
+//   background-color: blue;
+
+//   padding: 10px;
+// }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 1200px;
+  height: auto;
+  background-color: transparent;
+
+  padding: 20px;
+}

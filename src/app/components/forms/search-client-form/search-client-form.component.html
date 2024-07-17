@@ -1,0 +1,28 @@
+<form class="form" [formGroup]="taxNumberForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form__field">
+    <mat-label>Taxpayer identification number</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="taxNumber"
+      maxlength="10"
+      title="Please enter a valid tax number in format 1122334455 (only 10 digits)"
+      placeholder="Ex. 1122334455"
+    />
+
+    @if (taxNumberForm.get('taxNumber')?.hasError('pattern') &&
+    !taxNumberForm.get('taxNumber')?.hasError('required')) {
+    <mat-error>Please enter a valid tax number</mat-error>
+    } @if (taxNumberForm.get('taxNumber')?.hasError('required')) {
+    <mat-error>Tax number is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+  <button
+    mat-raised-button
+    type="submit"
+    [disabled]="taxNumberForm.invalid"
+    class="btn btn-dark"
+  >
+    Search
+  </button>
+</form>

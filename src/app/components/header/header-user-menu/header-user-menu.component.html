@@ -1,0 +1,33 @@
+<button mat-button [matMenuTriggerFor]="menuUser" class="userMenu">
+  @if(currentUserProfile(); as currentUserProfile){
+  <div class="user-menu">
+    <img
+      [src]="currentUserProfile.userAvatar"
+      class="user-menu__img"
+      alt="'avatar' + {{ currentUserProfile.lastName }}"
+    />
+
+    <div class="user-menu__container">
+      <strong class="user-menu__name">
+        {{ currentUserProfile.firstName }}
+        {{ currentUserProfile.lastName }}
+      </strong>
+      <p class="user-menu__position-in-the-company">
+        {{ currentUserProfile.positionInTheCompany }}
+      </p>
+    </div>
+  </div>
+
+  } @else{
+  <p>Wait a minute ...</p>
+  }
+</button>
+<mat-menu #menuUser="matMenu" class="mat-menu-panel">
+  <button mat-menu-item>
+    Profile
+    <!-- <a [routerLink]="['/departments/`${department._id}`']">
+      {{ department.name }}
+    </a> -->
+  </button>
+  <button mat-menu-item (click)="onLogout()">Exit</button>
+</mat-menu>

@@ -1,19 +1,25 @@
-import { Routes } from '@angular/router';
-import { MainPageComponent } from './pages/main-page/main-page.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { SignupPageComponent } from './pages/signup-page/signup-page.component';
-import { UserProfilePageComponent } from './pages/user-profile-page/user-profile-page.component';
-import { LayoutComponent } from './components/layout/layout.component';
-import { canActivateAuth } from './guards/accese.guard';
+import { Routes } from "@angular/router";
+import { canActivateAuth } from "./guards/accese.guard";
+
+import { LoginPageComponent } from "./pages/login-page/login-page.component";
+
+import { LayoutComponent } from "./components/layout/layout.component";
+import { TransactionPageComponent } from "./pages/transaction-page/transaction-page.component";
+import { ClientsPageComponent } from "./pages/clients-page/clients-page.component";
+import { CreateContractPageComponent } from "./pages/create-contract-page/create-contract-page.component";
+import { ArchivesPageComponent } from "./pages/archives-page/archives-page.component";
 
 export const routes: Routes = [
-  { path: '', component: MainPageComponent },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'signup', component: SignupPageComponent },
+  { path: "login", component: LoginPageComponent },
   {
-    path: 'profile',
+    path: "",
     component: LayoutComponent,
-    children: [{ path: 'profile', component: UserProfilePageComponent }],
+    children: [
+      { path: "transaction", component: TransactionPageComponent },
+      { path: "clients", component: ClientsPageComponent },
+      { path: "archives", component: ArchivesPageComponent },
+      { path: "create-contract", component: CreateContractPageComponent },
+    ],
     canActivate: [canActivateAuth],
   },
 ];

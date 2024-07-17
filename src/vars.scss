@@ -1,0 +1,22 @@
+:root {
+  --black-cl: #000000;
+  --white-cl: #ffffff;
+  --blue-cl: #2b7af1;
+  --orange-cl: #ffb039;
+
+  --black-text-cl: #111111;
+  --white-text-cl: #ffffff;
+  --light-blue-text-cl: #00bfff;
+  --blue-text-cl: #2b7af1;
+  --red-text-cl: #ff0000;
+
+  --light-box-shadow: rgba(0, 0, 0, 0.2);
+  --btn-box-shadow: rgba(255, 122, 0, 0.2);
+
+  --orange-gradient: linear-gradient(90deg, #ff7a00 0.2%, #ffb039 99.82%);
+  --orange-gradient-reverse: linear-gradient(
+    180deg,
+    #ff7a00 0.2%,
+    #ffb039 99.82%
+  );
+}

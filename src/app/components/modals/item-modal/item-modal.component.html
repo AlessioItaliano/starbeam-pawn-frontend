@@ -1,0 +1,12 @@
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>What's price is now?</mat-label>
+    <input matInput [(ngModel)]="price" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="changePrice()" cdkFocusInitial>
+    Change
+  </button>
+</mat-dialog-actions>

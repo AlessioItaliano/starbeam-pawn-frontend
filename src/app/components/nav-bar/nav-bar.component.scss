@@ -1,0 +1,38 @@
+// :host {
+//   width: 100%;
+//   height: 50px;
+//   padding: 20px;
+
+//   background-color: var(--blue-cl);
+// }
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: auto;
+  padding: 10px;
+
+  background-color: var(--blue-cl);
+}
+
+.nav-bar__list {
+  display: flex;
+  align-items: center;
+
+  gap: 30px;
+}
+
+.nav-bar__item {
+  color: var(--white-text-cl);
+  padding: 10px;
+  cursor: pointer;
+}
+
+.nav-bar__item.active-link a {
+  color: black; /* або будь-який інший колір, який вам потрібен */
+  //   background-color: #000000; /* або будь-який інший колір фону, який вам потрібен */
+  font-weight: bold; /* щоб виділити активне посилання */
+}

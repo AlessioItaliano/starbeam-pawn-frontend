@@ -1,0 +1,51 @@
+<form class="form" [formGroup]="logInForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form__field">
+    <mat-label>Email</mat-label>
+    <input
+      autocomplete="email"
+      type="email"
+      matInput
+      formControlName="email"
+      title="Please enter a valid email in forma  example@example.com"
+      placeholder="Ex. example@example.com"
+    />
+    @if (logInForm.get('email')?.hasError('email') &&
+    !logInForm.get('email')?.hasError('required')) {
+    <mat-error>Please enter a valid email format</mat-error>
+    } @if (logInForm.get('email')?.hasError('required')) {
+    <mat-error>Email is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="form__field">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      [type]="hide() ? 'password' : 'text'"
+      formControlName="password"
+      title="Please enter a password from 8 to 16 characters"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clickEvent($event)"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide()"
+    >
+      <mat-icon>{{ hide() ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+
+    @if (logInForm.get('password')?.hasError('pattern') &&
+    !logInForm.get('password')?.hasError('required')) {
+    <mat-error
+      >Please enter a valid password (from 8 to 16 characters)</mat-error
+    >
+    } @if (logInForm.get('password')?.hasError('required')) {
+    <mat-error>Password is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+  <button mat-raised-button class="btn btn-dark" [disabled]="logInForm.invalid">
+    Enter
+  </button>
+  <!-- <button type="submit" class="btn btn-dark">Enter</button> -->
+</form>

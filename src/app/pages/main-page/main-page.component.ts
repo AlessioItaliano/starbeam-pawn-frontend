@@ -1,26 +1,26 @@
-import { Component, inject } from '@angular/core';
-import { IGoods } from '../../interface/goods.interface';
-import { ApiService } from '../../services/api.service';
-import { GoodsItemComponent } from '../../components/goods/goods-item/goods-item.component';
+import { Component, inject } from "@angular/core";
+
+// import { ApiService } from "../../services/api.service";
+// import { GoodsItemComponent } from "../../components/goods/goods-item/goods-item.component";
 
 @Component({
-  selector: 'app-main-page',
+  selector: "app-main-page",
   standalone: true,
-  imports: [GoodsItemComponent],
-  templateUrl: './main-page.component.html',
-  styleUrl: './main-page.component.scss',
+  imports: [],
+  templateUrl: "./main-page.component.html",
+  styleUrl: "./main-page.component.scss",
 })
 export class MainPageComponent {
-  title = 'starbeam-pawn-frontend';
+  title = "starbeam-pawn-frontend";
 
-  apiService = inject(ApiService);
+  // apiService = inject(ApiService);
 
-  goodsList: IGoods[] = [];
+  // goodsList: IGoods[] = [];
 
-  constructor() {
-    this.apiService.getAllGoods().subscribe((goods: IGoods[]) => {
-      this.goodsList = goods;
-      console.log(goods);
-    });
-  }
+  //   constructor() {
+  //     this.apiService.getAllGoods().subscribe((goods: IGoods[]) => {
+  //       this.goodsList = goods;
+  //       console.log(goods);
+  //     });
+  //   }
 }

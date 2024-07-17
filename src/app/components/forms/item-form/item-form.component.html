@@ -1,0 +1,153 @@
+<form class="form" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form__field">
+    <mat-label>Client</mat-label>
+    <input
+      type="text"
+      value="{{ clientData?.lastName }} {{ clientData?.firstName }} {{
+        clientData?.patronymic
+      }}"
+      title="Field filled with available data. If it doesn't match, check the client's profile"
+      matInput
+      readonly
+    />
+  </mat-form-field>
+  <mat-form-field class="form__field">
+    <mat-label>Item name</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="itemName"
+      placeholder="Ex. Iphone"
+      title="Please enter a valid item name (letters, at least 2 characters)"
+    />
+    @if (itemForm.get('itemName')?.hasError('pattern') &&
+    !itemForm.get('itemName')?.hasError('required')) {
+    <mat-error>Please enter a valid item name</mat-error>
+    } @if (itemForm.get('itemName')?.hasError('required')) {
+    <mat-error>Item name is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="form__field">
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="category">
+      @for (category of categoryItems; track category.label){
+      <mat-option [value]="category.value">{{ category.label }}</mat-option>
+      }
+    </mat-select>
+    @if (itemForm.get('category')?.hasError('required')) {
+    <mat-error> One of the categories must be chosen</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="form__field">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      rows="5"
+      formControlName="description"
+      placeholder="Ex. Old mobile phone, with optional ..."
+      title="Please enter short description about item"
+    ></textarea>
+
+    @if (itemForm.get('description')?.hasError('minlength') &&
+    !itemForm.get('description')?.hasError('required')) {
+    <mat-error>Please enter more than 10 chapters</mat-error>
+    } @if (itemForm.get('description')?.hasError('required')) {
+    <mat-error>Description is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <div class="form__group">
+    <mat-form-field class="form__field">
+      <mat-label>Estimated price</mat-label>
+      <input
+        class="form__input"
+        matInput
+        type="number"
+        matInput
+        formControlName="estimatedPrice"
+        title="Please enter an estimated price of item without commission"
+        placeholder="0"
+      />
+      <span matTextPrefix>₴&nbsp;</span>
+      <span matTextSuffix>UAH</span>
+      @if (itemForm.get('estimatedPrice')?.hasError('pattern') &&
+      !itemForm.get('estimatedPrice')?.hasError('required')) {
+      <mat-error>Please enter a valid estimated price format</mat-error>
+      } @if (itemForm.get('estimatedPrice')?.hasError('required')) {
+      <mat-error>Estimated price is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="form__field">
+      <mat-label>Commission</mat-label>
+      <input
+        matInput
+        type="number"
+        matInput
+        formControlName="commission"
+        title="Please enter an commission"
+        placeholder="0"
+      />
+      <span matTextPrefix>₴&nbsp;</span>
+      <span matTextSuffix> UAH </span>
+      @if (itemForm.get('commission')?.hasError('pattern') &&
+      !itemForm.get('commission')?.hasError('required')) {
+      <mat-error>Please enter a valid commission format</mat-error>
+      } @if (itemForm.get('commission')?.hasError('required')) {
+      <mat-error>Commission is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+  </div>
+  <div class="form__group">
+    <mat-form-field class="example-full-width">
+      <mat-label>Date of acceptance</mat-label>
+      <input
+        matInput
+        title="You can not change the date of acceptance"
+        [value]="today | date : 'MM-dd-yyyy'"
+        readonly
+      />
+      <mat-datepicker-toggle matIconSuffix></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Contract validity until</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="dateValidUntil"
+        placeholder="Ex. MM/DD/YYYY"
+        [min]="today"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      @if (itemForm.get('dateValidUntil')?.hasError('required')) {<mat-error>
+        Date is <strong> required </strong>
+      </mat-error>
+      }
+    </mat-form-field>
+  </div>
+  <div class="form__group">
+    <button
+      mat-raised-button
+      class="btn btn-light"
+      type="button"
+      (click)="onReturn()"
+    >
+      Return
+    </button>
+    <button
+      mat-raised-button
+      class="btn btn-dark"
+      [disabled]="itemForm.invalid"
+    >
+      Create
+    </button>
+  </div>
+</form>

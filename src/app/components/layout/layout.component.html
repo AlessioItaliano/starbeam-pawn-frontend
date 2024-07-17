@@ -1,5 +1,30 @@
-<app-sidebar></app-sidebar>
+<!-- <app-header></app-header>
+<app-nav-bar></app-nav-bar>
 
-<div>
-  <router-outlet></router-outlet>
+@if(!isLoading){
+<div class="loader-overlay">
+  <mat-spinner></mat-spinner>
 </div>
+} @else{
+<router-outlet></router-outlet>
+}
+
+<!-- <div *ngIf="isLoading | async; else content" class="loader-overlay">
+  <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #content>
+  <router-outlet></router-outlet>
+</ng-template> -->
+
+<!-- <router-outlet></router-outlet>  -->
+<app-header></app-header>
+<app-nav-bar></app-nav-bar>
+
+<!-- <div *ngIf="isLoading; else content" class="loader-overlay">
+  <mat-spinner></mat-spinner>
+</div> -->
+<app-loader></app-loader>
+<!-- <ng-template #content> -->
+<router-outlet></router-outlet>
+<!-- </ng-template> -->

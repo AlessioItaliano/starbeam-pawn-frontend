@@ -1,0 +1,25 @@
+<div class="create-contract-page__container">
+  <h2 class="title h2">Create new contract</h2>
+
+  @if(!clientData){
+  <div class="create-contract-page__section">
+    <h3 class="title h3">1.Is the user already a client?</h3>
+    <mat-radio-group [(ngModel)]="clientType">
+      <mat-radio-button value="existingClient">
+        Existing Client
+      </mat-radio-button>
+      <mat-radio-button value="newClient">New Client</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  @if(clientType === 'newClient'){
+  <app-new-client-form></app-new-client-form>
+  } @else if(clientType === 'existingClient'){
+  <app-search-client-form></app-search-client-form>
+  } } @else {
+ <div class="create-contract-page__section">
+    <h3 class="title h3">2.Write about contract details</h3>
+    <app-item-form></app-item-form>
+  </div>
+  }
+</div>

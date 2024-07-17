@@ -1,0 +1,181 @@
+<form class="form" [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form__field">
+    <mat-label>First name</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="firstName"
+      placeholder="Ex. Ivan"
+      title="Please enter a valid first name (letters, at least 2 characters)"
+    />
+    @if (newUserForm.get('firstName')?.hasError('pattern') &&
+    !newUserForm.get('firstName')?.hasError('required')) {
+    <mat-error>Please enter a valid first name</mat-error>
+    } @if (newUserForm.get('firstName')?.hasError('required')) {
+    <mat-error>First name is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="form__field">
+    <mat-label>Last name</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="lastName"
+      placeholder="Ex. Ivanov"
+      title="Please enter a valid last name (letters, at least 2 characters)"
+    />
+    @if (newUserForm.get('firstName')?.hasError('pattern') &&
+    !newUserForm.get('firstName')?.hasError('required')) {
+    <mat-error>Please enter a valid last name</mat-error>
+    } @if (newUserForm.get('firstName')?.hasError('required')) {
+    <mat-error>Last name is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="form__field">
+    <mat-label>Patronymic</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="patronymic"
+      placeholder="Ex. Ivanovich"
+      title="Please enter a valid patronymic (letters, at least 2 characters)"
+    />
+    @if (newUserForm.get('patronymic')?.hasError('pattern') &&
+    !newUserForm.get('patronymic')?.hasError('required')) {
+    <mat-error>Please enter a valid patronymic</mat-error>
+    } @if (newUserForm.get('patronymic')?.hasError('required')) {
+    <mat-error>Patronymic is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="form__field">
+    <mat-label>Phone</mat-label>
+    <span matTextPrefix>+38 &nbsp;</span>
+    <input
+      type="tel"
+      matInput
+      formControlName="phone"
+      maxlength="10"
+      title="Please enter a valid phone number in format 066-777-88-99 (only 10 digits)"
+      placeholder="Ex. 066-777-88-99"
+    />
+    @if (newUserForm.get('phone')?.hasError('pattern') &&
+    !newUserForm.get('phone')?.hasError('required')) {
+    <mat-error>Please enter a valid phone number</mat-error>
+    } @if (newUserForm.get('phone')?.hasError('required')) {
+    <mat-error>Phone number is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="form__field">
+    <mat-label>Email</mat-label>
+    <input
+      type="email"
+      matInput
+      formControlName="email"
+      title="Please enter a valid email in format example@example.com"
+      placeholder="Ex. example@example.com"
+    />
+    @if (newUserForm.get('email')?.hasError('email') &&
+    !newUserForm.get('email')?.hasError('required')) {
+    <mat-error>Please enter a valid email format</mat-error>
+    } @if (newUserForm.get('email')?.hasError('required')) {
+    <mat-error>Email is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="form__field">
+    <mat-label>Taxpayer identification number</mat-label>
+    <input
+      type="text"
+      matInput
+      maxlength="10"
+      formControlName="taxNumber"
+      title="Please enter a valid tax number in format 1122334455 (only 10 digits)"
+      placeholder="Ex. 1122334455"
+    />
+    @if (newUserForm.get('taxNumber')?.hasError('pattern') &&
+    !newUserForm.get('taxNumber')?.hasError('required')) {
+    <mat-error>Please enter a valid tax number format</mat-error>
+    } @if (newUserForm.get('taxNumber')?.hasError('required')) {
+    <mat-error>Tax number is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+  <!-- <div formGroupName="passport"> -->
+  <div
+    class="example-full-width form-passport-group"
+    cellspacing="0"
+    formGroupName="passport"
+  >
+    <mat-form-field class="example-full-width">
+      <mat-label>Serie</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="passportSerie"
+        title="Please enter a valid format (FF, FK ...)"
+        placeholder="Ex. FF"
+        (input)="onPassportSerieInput()"
+        maxlength="2"
+      />
+      @if (newUserForm.get('passport.passportSerie')?.hasError('pattern') &&
+      !newUserForm.get('passport.passportSerie')?.hasError('required')) {
+      <mat-error>Please enter a valid serie of passport</mat-error>
+      } @if (newUserForm.get('passport.passportSerie')?.hasError('required')) {
+      <mat-error>Passport serie is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Number</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Ex. 757575"
+        maxlength="6"
+        formControlName="passportNumber"
+        title="Please enter a valid format (757575, 123456 ...)"
+      />
+      @if (newUserForm.get('passport.passportNumber')?.hasError('pattern') &&
+      !newUserForm.get('passport.passportNumber')?.hasError('required')) {
+      <mat-error>Please enter a valid number of passport</mat-error>
+      } @if (newUserForm.get('passport.passportNumber')?.hasError('required')) {
+      <mat-error>Passport number is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Date of issue </mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="passportDateOfIssue"
+        placeholder="Ex. MM/DD/YYYY"
+        [max]="today"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      @if
+      (newUserForm.get('passport.passportDateOfIssue')?.hasError('required'))
+      {<mat-error>
+        Date of issue number is
+        <strong> required </strong>
+      </mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <button
+    mat-raised-button
+    class="btn btn-dark"
+    [disabled]="newUserForm.invalid"
+  >
+    Create
+  </button>
+  <!-- <button type="submit" class="btn btn-dark">Create</button> -->
+</form>

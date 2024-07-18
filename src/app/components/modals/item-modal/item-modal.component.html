@@ -1,12 +1,27 @@
-<mat-dialog-content>
-  <mat-form-field>
-    <mat-label>What's price is now?</mat-label>
-    <input matInput [(ngModel)]="price" />
-  </mat-form-field>
+<mat-dialog-content class="modal-container">
+  <ul>
+    @for(price of priceHistory; track $index){
+    <li>
+      {{ price.changeDate | date }} {{ price.estimatedPrice }}
+      {{ price.commission }}
+    </li>
+    }
+  </ul>
+  <div class="input-container">
+    <mat-form-field>
+      <mat-label>What's new price now?</mat-label>
+      <input matInput [(ngModel)]="price" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>What's commission now?</mat-label>
+      <input matInput [(ngModel)]="commission" />
+    </mat-form-field>
+  </div>
 </mat-dialog-content>
+
 <mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="changePrice()" cdkFocusInitial>
+  <button mat-button class="btn-light" (click)="onNoClick()">No Thanks</button>
+  <button mat-button class="btn-dark" (click)="changePrice()" cdkFocusInitial>
     Change
   </button>
 </mat-dialog-actions>

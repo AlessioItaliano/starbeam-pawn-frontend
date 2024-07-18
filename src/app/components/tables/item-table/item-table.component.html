@@ -98,10 +98,19 @@
         >
           <p class="example-element-description">{{ element.description }}</p>
           <div class="example-element__btn">
+            <!-- <button
+              mat-raised-button
+              class="btn"
+              (click)="toShowPriceHistory(element)"
+              [disabled]="isContractExpired(element.dateValidUntil)"
+            >
+              Show Price History
+            </button> -->
             <button
               mat-raised-button
-              class="btn btn-light"
-              (click)="toUpdate(element._id)"
+              class="btn"
+              (click)="toUpdate(element)"
+              [disabled]="isContractExpired(element.dateValidUntil)"
             >
               Update
             </button>

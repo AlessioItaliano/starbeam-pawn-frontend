@@ -23,7 +23,8 @@ import {
   trigger,
 } from "@angular/animations";
 import { MatDialog } from "@angular/material/dialog";
-import { ItemModalComponent } from "../../modals/item-modal";
+import { ItemModalComponent } from "../../modals/item-modal/item-modal.component";
+import { NotificationService } from "../../../services/notification.service";
 
 @Component({
   selector: "app-item-table",
@@ -48,13 +49,17 @@ import { ItemModalComponent } from "../../modals/item-modal";
     MatSortModule,
     MatPaginatorModule,
     MatIconModule,
+    ItemModalComponent,
   ],
 })
 export class ItemTableComponent {
   readonly dialog = inject(MatDialog);
-  // dataSource = ELEMENT_DATA;
   dataSource: MatTableDataSource<IItems> = new MatTableDataSource<IItems>();
-  // columnsToDisplay = ["name", "weight", "symbol", "position"];
+  expandedElement: IItems | null = null;
+  itemsBase: IItems[] = [];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   columnsToDisplay: string[] = [
     "signedDate",
@@ -67,40 +72,18 @@ export class ItemTableComponent {
     "pawnUser",
   ];
 
-  // columnsToDisplay: any = [
-  //   { key: "dateOfAcceptance", label: "Signed Date" },
-  //   { key: "dateValidUntil", label: "Expiration Date" },
-  //   { key: "itemName", label: "Item Name" },
-  //   { key: "description", label: "Description" },
-  //   { key: "estimatedPrice", label: "Price" },
-  //   { key: "commission", label: "Commission" },
-  // {
-  //   key: "clientId",
-  //   label: "Client",
-  //   // custom: (element: any) =>
-  //   //   `${element.clientId.firstName} ${element.clientId.lastName} ${element.clientId.patronymic}`,
-  // },
-  // {
-  //   key: "pawnUser",
-  //   label: "Pawn User",
-  //   // custom: (element: any) =>
-  //   //   `${element.pawnUser.firstName} ${element.pawnUser.lastName} ${element.pawnUser.patronymic}`,
-  // },
-  // ];
-
   columnsToDisplayWithExpand: string[] = [
     // ...this.columnsToDisplay.map((column: any) => column.key),
     ...this.columnsToDisplay,
     // "description",
   ];
 
-  expandedElement: IItems | null = null;
-  itemsBase: IItems[] = [];
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private notification: NotificationService
+  ) {}
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(private apiService: ApiService, private router: Router) {}
   ngOnInit() {
     this.apiService.getAllItems().subscribe((data: IItems[]) => {
       this.itemsBase = data;
@@ -122,34 +105,48 @@ export class ItemTableComponent {
     }
   }
 
-  // toUpdate(id: string): void {
-  //   console.log(id);
+  isContractExpired(dateValidUntil: Date): boolean {
+    const currentDate = new Date();
+    const expirationDate = new Date(dateValidUntil);
+    return expirationDate > currentDate;
+  }
+
+  // toShowPriceHistory(item: any): void {
+  //   console.log(item.priceHistory);
   // }
 
-  toUpdate(): void {
-    const dialogRef = this.dialog.open(
-      ItemModalComponent
-      // {
-      // data: { name: this.name(), animal: this.animal() },
-      // }
-    );
+  toUpdate(item: any): void {
+    console.log(item._id);
+    console.log(item.priceHistory);
+    const dialogRef = this.dialog.open(ItemModalComponent, {
+      data: { price: item.estimatedPrice, commission: item.commission, priceHistory: item.priceHistory},
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
       if (result !== undefined) {
-        this.animal.set(result);
+        this.apiService
+          .changeItemPrice(item._id, {
+            estimatedPrice: result.price,
+            commission: result.commission,
+          })
+          .subscribe((updatedItem: IItems) => {
+            const index = this.itemsBase.findIndex((i) => i._id === item._id);
+            if (index !== -1) {
+              this.itemsBase[index] = updatedItem;
+              this.dataSource.data = this.itemsBase;
+              this.notification.showSuccess("Price is update successfully");
+            }
+          });
       }
     });
   }
 
   toRemoveAndAddToArchive(id: string): void {
     this.apiService.moveToArchive(id).subscribe((data: any) => {
-      console.log(data);
-      // Видаляємо елемент з itemsBase
       this.itemsBase = this.itemsBase.filter((item) => item._id !== id);
-      // Оновлюємо dataSource
       this.dataSource.data = this.itemsBase;
+      this.notification.showSuccess("Item is added to archive");
     });
-    console.log(id);
   }
 }

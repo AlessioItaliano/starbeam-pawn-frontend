@@ -11,6 +11,12 @@ enum ItemsCategories {
   miscellaneous = "miscellaneous",
 }
 
+interface IPriceHistory {
+  estimatedPrice: number;
+  commission: number;
+  changeDate: Date;
+}
+
 export interface IItems {
   _id: string;
   itemName: string;
@@ -22,4 +28,5 @@ export interface IItems {
   dateValidUntil: Date;
   clientId: string;
   archived: boolean;
+  priceHistory: IPriceHistory[];
 }

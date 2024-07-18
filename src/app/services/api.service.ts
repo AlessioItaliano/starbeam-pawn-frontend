@@ -35,6 +35,13 @@ export class ApiService {
     return this.http.post<any>(`${this.baseApiUrl}/items/create`, payload);
   }
 
+  changeItemPrice(itemId: string, payload: any): Observable<any> {
+    return this.http.patch<any>(
+      `${this.baseApiUrl}/items/price/${itemId}`,
+      payload
+    );
+  }
+
   getArchiveItems(): Observable<IItems[]> {
     return this.http.get<IItems[]>(`${this.baseApiUrl}/items/archive`);
   }

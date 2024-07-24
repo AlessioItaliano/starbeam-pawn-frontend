@@ -1,27 +1,37 @@
-# StarbeamPawnFrontend
+# SRM Starbeam Pawn
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
+Greetings and welcome on my news website!
 
-## Development server
+# About Website
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+My SRM (Sales and Relationship Management) system for a pawn shop helps manage customer interactions, track pawned items, streamline sales processes, and maintain comprehensive records. It enhances customer service by providing detailed customer history, automates communication, and ensures compliance with regulatory requirements. The system also includes inventory management, transaction tracking, and reporting features, improving operational efficiency and aiding in decision-making for the pawn shop.
 
-## Code scaffolding
+## Sections of the website
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# How to Run the Project
 
-## Build
+Simply type in the [link](https://alessioitaliano.github.io/starbeam-pawn-frontend/), and let
+the magic unfold.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Lighthouse report
 
-## Running unit tests
+The website demonstrates excellent performance metrics when tested on the
+Lighthouse report.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Used technologies
 
-## Running end-to-end tests
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Support
 
-## Further help
+If you have any questions, concerns or suggestions, feel free to get in touch
+with us. We're always here to help!
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+# About the Author
+
+This website was created by Vasyl Lepish  
+[Github](https://github.com/AlessioItaliano)
+[LinkedIn](https://www.linkedin.com/in/vasyl-lepish/)

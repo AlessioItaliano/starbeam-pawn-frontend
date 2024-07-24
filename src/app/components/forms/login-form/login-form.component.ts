@@ -8,10 +8,11 @@ import {
 } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { ApiService } from "../../../services/api.service";
 import { Router } from "@angular/router";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
+
+import { ApiService } from "../../../services/api.service";
 import { NotificationService } from "../../../services/notification.service";
 
 @Component({
@@ -55,9 +56,9 @@ export class LoginFormComponent {
 
   onSubmit(): void {
     if (this.logInForm.valid) {
-      //@ts-ignore
+      // @ts-ignore
       this.apiService.login(this.logInForm.value).subscribe(
-        (res: any) => {
+        () => {
           this.router.navigate(["/transaction"]);
           this.notification.showSuccess("Welcome");
         },

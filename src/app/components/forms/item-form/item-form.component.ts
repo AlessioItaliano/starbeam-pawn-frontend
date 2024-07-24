@@ -8,16 +8,19 @@ import {
 } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
-import { ApiService } from "../../../services/api.service";
-import { NotificationService } from "../../../services/notification.service";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { ClientDataService } from "../../../services/client.service";
-import { IClient } from "../../../interface/client.interface";
+
 import { CommonModule } from "@angular/common";
 import { Router } from "@angular/router";
+
+import { ApiService } from "../../../services/api.service";
+import { NotificationService } from "../../../services/notification.service";
+import { ClientDataService } from "../../../services/client.service";
+
+import { IClient } from "../../../interface/client.interface";
 
 @Component({
   selector: "app-item-form",
@@ -63,9 +66,6 @@ export class ItemFormComponent {
     clientId: new FormControl<string | null>(null, [Validators.required]),
   });
 
-  // picker1: any;
-  // picker2: any;
-
   categoryItems = [
     { label: "Jewelry", value: "jewelry" },
     { label: "Electronics", value: "electronics" },
@@ -110,14 +110,11 @@ export class ItemFormComponent {
   }
 
   onSubmit(): void {
-    console.log(this.itemForm.value);
     if (this.itemForm.invalid) {
       return;
     }
-    //@ts-ignore
     this.apiService.createItem(this.itemForm.value).subscribe(
       (res: any) => {
-        console.log(res);
         this.notification.showSuccess("Item created successfully");
         this.clientDataService.setClientData(null);
         this.router.navigate(["/transaction"]);

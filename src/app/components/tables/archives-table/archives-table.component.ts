@@ -33,7 +33,7 @@ export class ArchivesTableComponent implements OnInit {
   public columnConfigs: IColumnConfig[] = [
     {
       columnDef: "id",
-      header: "ID",
+      header: "Contract number",
       cell: (element: any) => `${element._id}`,
     },
     {

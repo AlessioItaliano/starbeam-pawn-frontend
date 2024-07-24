@@ -1,62 +1,7 @@
-<div class="login-page__container">
-  <h2 class="title h2">Welcome back!</h2>
+<div class="container" appIsMobile appIsTablet appIsLaptop>
+  <div class="login-page__container">
+    <h2 class="title h2">Welcome back!</h2>
 
-  <app-login-form></app-login-form>
-
-  <!-- <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <label class="form__label">
-      Email
-      <input
-        formControlName="email"
-        class="form__input"
-        type="email"
-        name="userEmail"
-        placeholder="Enter your email address"
-        minlength="3"
-        size="30"
-        title="Please enter your email address in format default@example.com"
-        required
-      />
-      <p class="error-message">Please enter a valid e-mail address</p>
-    </label>
-
-    <label class="form__label form__password-eye">
-      Password
-      <input
-        formControlName="password"
-        class="form__input"
-        [type]="isPasswordVisible() ? 'text' : 'password'"
-        name="userPassword"
-        placeholder="Enter your password"
-        autocomplete="new-password"
-        minlength="8"
-        maxlength="16"
-        pattern="[A-Za-z0-9]{8,16}"
-        title="Enter between 8 to 16 characters"
-        required
-      />
-      <p class="error-message">Please enter a valid password</p>
-
-      <button
-        class="form__password-eye-btn"
-        (click)="togglePasswordVisibility()"
-        type="button"
-      >
-        <svg
-          icon="eye-open"
-          class="form__password-eye-icon"
-          *ngIf="isPasswordVisible()"
-        ></svg>
-        <svg
-          icon="eye-close"
-          class="form__password-eye-icon"
-          *ngIf="!isPasswordVisible()"
-        ></svg>
-      </button>
-    </label>
-
-    <button type="submit" class="btn btn-dark">Enter</button>
-  </form> -->
+    <app-login-form></app-login-form>
+  </div>
 </div>
-
-<!-- (click)="isPasswordVisible().set(!isPasswordVisible())" -->

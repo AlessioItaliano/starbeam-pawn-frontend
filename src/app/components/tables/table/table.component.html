@@ -1,4 +1,4 @@
-<mat-form-field class="input-filter" appIsTablet appIsLaptop>
+<mat-form-field class="input-filter">
   <mat-label>Filter</mat-label>
   <input
     matInput
@@ -9,13 +9,8 @@
   <span matTextPrefix>🔎&nbsp;</span>
 </mat-form-field>
 
-<div
-  class="mat-elevation-z8 example-container"
-  appIsMobile
-  appIsTablet
-  appIsLaptop
->
-  <table mat-table [dataSource]="dataSource">
+<div class="example-container">
+  <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
     @for(column of columnConfigs; track $index){
     <ng-container matColumnDef="{{ column.columnDef }}">
       <th mat-header-cell *matHeaderCellDef>
@@ -32,6 +27,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
   <mat-paginator
     [pageSizeOptions]="[10, 25, 100]"
     showFirstLastButtons

@@ -5,6 +5,8 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
+import { Observable } from "rxjs";
+import { CommonModule } from "@angular/common";
 import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableDataSource, MatTableModule } from "@angular/material/table";
@@ -12,12 +14,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 
 import { IColumnConfig } from "../../../interface/column-config.interface";
-import { IsMobileDirective } from "../../directives/is-mobile.directive";
-import { IsTabletDirective } from "../../directives/is-tablet.directive";
-import { IsLaptopDirective } from "../../directives/is-laptop.directive";
+
 import { ResponsiveService } from "../../../services/responsive.service";
-import { Observable } from "rxjs";
-import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-table",
@@ -28,9 +26,6 @@ import { CommonModule } from "@angular/common";
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    IsMobileDirective,
-    IsTabletDirective,
-    IsLaptopDirective,
     CommonModule,
   ],
   templateUrl: "./table.component.html",

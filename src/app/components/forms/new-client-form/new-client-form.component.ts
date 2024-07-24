@@ -10,8 +10,9 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { provideNativeDateAdapter } from "@angular/material/core";
-import { ApiService } from "../../../services/api.service";
 import { MatButtonModule } from "@angular/material/button";
+
+import { ApiService } from "../../../services/api.service";
 import { ClientDataService } from "../../../services/client.service";
 import { NotificationService } from "../../../services/notification.service";
 
@@ -87,7 +88,6 @@ export class NewClientFormComponent {
   }
 
   onSubmit(): void {
-    console.log(this.newUserForm.value);
     if (this.newUserForm.invalid) {
       return;
     }

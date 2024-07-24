@@ -1,4 +1,9 @@
-<div class="create-contract-page__container">
+<div
+  class="create-contract-page__container"
+  appIsMobile
+  appIsTablet
+  appIsLaptop
+>
   <h2 class="title h2">Create new contract</h2>
 
   @if(!clientData){
@@ -17,7 +22,7 @@
   } @else if(clientType === 'existingClient'){
   <app-search-client-form></app-search-client-form>
   } } @else {
- <div class="create-contract-page__section">
+  <div class="create-contract-page__section">
     <h3 class="title h3">2.Write about contract details</h3>
     <app-item-form></app-item-form>
   </div>

@@ -83,6 +83,7 @@
     <mat-form-field class="form__field">
       <mat-label>Commission</mat-label>
       <input
+        class="form__input"
         matInput
         type="number"
         matInput
@@ -106,7 +107,7 @@
       <input
         matInput
         title="You can not change the date of acceptance"
-        [value]="today | date : 'MM-dd-yyyy'"
+        [value]="today | date : 'MM/dd/yyyy'"
         readonly
       />
       <mat-datepicker-toggle matIconSuffix></mat-datepicker-toggle>

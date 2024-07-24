@@ -25,10 +25,10 @@
       placeholder="Ex. Ivanov"
       title="Please enter a valid last name (letters, at least 2 characters)"
     />
-    @if (newUserForm.get('firstName')?.hasError('pattern') &&
-    !newUserForm.get('firstName')?.hasError('required')) {
+    @if (newUserForm.get('lastName')?.hasError('pattern') &&
+    !newUserForm.get('lastName')?.hasError('required')) {
     <mat-error>Please enter a valid last name</mat-error>
-    } @if (newUserForm.get('firstName')?.hasError('required')) {
+    } @if (newUserForm.get('lastName')?.hasError('required')) {
     <mat-error>Last name is <strong>required</strong></mat-error>
     }
   </mat-form-field>
@@ -177,5 +177,4 @@
   >
     Create
   </button>
-  <!-- <button type="submit" class="btn btn-dark">Create</button> -->
 </form>

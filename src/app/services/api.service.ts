@@ -11,7 +11,7 @@ import { IClient } from "../interface/client.interface";
   providedIn: "root",
 })
 export class ApiService {
-  private baseApiUrl: string = "http://localhost:3000";
+  private baseApiUrl: string = "https://starbeam-pawn-backend.onrender.com";
   public cookiesService = inject(CookieService);
 
   public authToken: string | null = null;
@@ -97,20 +97,3 @@ export class ApiService {
     );
   }
 }
-// signup(payload: {
-//   firstName: string;
-//   lastName: string;
-//   phone: string;
-//   email: string;
-//   password: string;
-// }): Observable<any> {
-//   return this.http
-//     .post<IAuthToken>(`${this.baseApiUrl}/auth/signup`, payload)
-//     .pipe(
-//       tap((val: IAuthToken) => {
-//         this.authToken = val.token;
-
-//         this.cookiesService.set("token", this.authToken);
-//       })
-//     );
-// }

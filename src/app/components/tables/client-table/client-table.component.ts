@@ -1,13 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 
-import { ApiService } from "../../../services/api.service";
-// import { LoaderService } from "../../../services/loader.service";
-
 import { IClient } from "../../../interface/client.interface";
 import { IColumnConfig } from "../../../interface/column-config.interface";
-// import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+
 import { TableComponent } from "../table/table.component";
+
+import { ApiService } from "../../../services/api.service";
 import { LoaderService } from "../../../services/loader.service";
 
 @Component({
@@ -19,11 +18,6 @@ import { LoaderService } from "../../../services/loader.service";
 })
 export class ClientTableComponent implements OnInit {
   public columnConfigs: IColumnConfig[] = [
-    // {
-    //   columnDef: "id",
-    //   header: "ID",
-    //   cell: (element: IClient) => `${element._id}`,
-    // },
     {
       columnDef: "client",
       header: "Client",

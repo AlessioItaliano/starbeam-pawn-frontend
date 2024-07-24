@@ -1,0 +1,10 @@
+.form__group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+@media (max-width: 600px) {
+  .form__group {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=item-form.component.css.map */

@@ -1,0 +1,15 @@
+:root {
+  --white-cl: #ffffff;
+  --blue-cl: #2b7af1;
+  --orange-cl: #ffb039;
+  --black-text-cl: #111111;
+  --white-text-cl: #ffffff;
+  --light-blue-text-cl: #00bfff;
+  --blue-text-cl: #2b7af1;
+  --orange-gradient: linear-gradient(90deg, #ff7a00 0.2%, #ffb039 99.82%);
+  --orange-gradient-reverse: linear-gradient(
+    180deg,
+    #ff7a00 0.2%,
+    #ffb039 99.82%
+  );
+}/*# sourceMappingURL=vars.css.map */

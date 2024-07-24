@@ -1,0 +1,82 @@
+table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+.input-filter {
+  width: 100%;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+th,
+td {
+  padding: 0 5px;
+  text-align: left;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+}
+
+.example-element__btn {
+  display: flex;
+  gap: 5px;
+}
+
+@media (max-width: 600px) {
+  th,
+  td {
+    display: block;
+    width: 100%;
+  }
+  th {
+    display: none;
+  }
+  td {
+    position: relative;
+    padding-left: 50%;
+  }
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 5px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .example-element-detail {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+  }
+  .example-element__btn {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=table.component.css.map */

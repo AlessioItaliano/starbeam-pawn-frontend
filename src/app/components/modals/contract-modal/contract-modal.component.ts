@@ -1,9 +1,11 @@
 import { Component, Inject } from "@angular/core";
-import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
-import { LogoComponent } from "../../logo/logo.component";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { CommonModule } from "@angular/common";
+
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
+
+import { LogoComponent } from "../../logo/logo.component";
 
 @Component({
   selector: "app-contract-modal",

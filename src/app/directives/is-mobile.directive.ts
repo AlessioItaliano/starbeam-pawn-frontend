@@ -1,12 +1,12 @@
 import { Directive, ElementRef, Renderer2, OnDestroy } from "@angular/core";
-import { ResponsiveService } from "../../services/responsive.service";
+import { ResponsiveService } from "../services/responsive.service";
 import { Subscription } from "rxjs";
 
 @Directive({
-  selector: "[appIsTablet]",
+  selector: "[appIsMobile]",
   standalone: true,
 })
-export class IsTabletDirective implements OnDestroy {
+export class IsMobileDirective implements OnDestroy {
   private subscription: Subscription;
 
   constructor(
@@ -14,12 +14,12 @@ export class IsTabletDirective implements OnDestroy {
     private renderer: Renderer2,
     private responsiveService: ResponsiveService
   ) {
-    this.subscription = this.responsiveService.isTablet$.subscribe(
-      (isTablet) => {
-        if (isTablet) {
-          this.renderer.addClass(this.el.nativeElement, "tablet-size");
+    this.subscription = this.responsiveService.isMobile$.subscribe(
+      (isMobile) => {
+        if (isMobile) {
+          this.renderer.addClass(this.el.nativeElement, "mobile-size");
         } else {
-          this.renderer.removeClass(this.el.nativeElement, "tablet-size");
+          this.renderer.removeClass(this.el.nativeElement, "mobile-size");
         }
       }
     );

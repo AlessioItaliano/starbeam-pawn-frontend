@@ -1,12 +1,19 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { MatRadioModule } from "@angular/material/radio";
+
 import { NewClientFormComponent } from "../../components/forms/new-client-form/new-client-form.component";
 import { SearchClientFormComponent } from "../../components/forms/search-client-form/search-client-form.component";
-import { MatRadioModule } from "@angular/material/radio";
-import { ClientDataService } from "../../services/client.service";
-import { IClient } from "../../interface/client.interface";
 import { ItemFormComponent } from "../../components/forms/item-form/item-form.component";
+
+import { ClientDataService } from "../../services/client.service";
+
+import { IClient } from "../../interface/client.interface";
+
+import { IsMobileDirective } from "../../directives/is-mobile.directive";
+import { IsTabletDirective } from "../../directives/is-tablet.directive";
+import { IsLaptopDirective } from "../../directives/is-laptop.directive";
 
 @Component({
   selector: "app-create-contract-page",
@@ -20,6 +27,9 @@ import { ItemFormComponent } from "../../components/forms/item-form/item-form.co
     SearchClientFormComponent,
     MatRadioModule,
     ItemFormComponent,
+    IsMobileDirective,
+    IsTabletDirective,
+    IsLaptopDirective,
   ],
   providers: [],
 })
@@ -34,6 +44,4 @@ export class CreateContractPageComponent {
       this.clientData = data;
     });
   }
-
-  // onSubmit(): void {}
 }

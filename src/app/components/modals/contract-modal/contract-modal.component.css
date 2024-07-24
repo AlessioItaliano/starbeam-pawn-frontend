@@ -1,0 +1,93 @@
+.container {
+  padding: 20px;
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.contract__container {
+  background-color: #fff;
+  font-family: Open Sans, sans-serif;
+  font-size: 100%;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #000;
+}
+
+table {
+  max-width: 670px;
+  padding: 50px;
+}
+
+.date-content {
+  text-align: end;
+  padding: 5px 20px;
+  font-weight: 400;
+}
+
+thead th {
+  text-align: left;
+}
+
+tbody td {
+  padding: 10px 20px;
+  border: solid 1px #ddd;
+}
+
+.content {
+  padding: 20px;
+}
+
+.content p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.label {
+  font-weight: bold;
+  display: block;
+  font-size: 13px;
+}
+
+.status {
+  color: green;
+}
+
+.items-title {
+  font-size: 20px;
+  padding: 30px 15px 0 15px;
+}
+
+.half-width {
+  width: 50%;
+  padding: 20px;
+  vertical-align: top;
+}
+
+.items {
+  font-size: 14px;
+  margin: 0;
+  padding: 10px;
+  border: solid 1px #ddd;
+  font-weight: bold;
+}
+
+.item-description {
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.content-right {
+  padding: 5px 20px;
+  text-align: right;
+}
+
+.alert {
+  font-size: 6px;
+  font-weight: normal;
+}
+
+.modal-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=contract-modal.component.css.map */

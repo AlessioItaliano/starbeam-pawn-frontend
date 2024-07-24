@@ -123,7 +123,6 @@ export class ItemTableComponent {
     },
   ];
 
-  columnsToDisplayWithExpand: string[] = [...this.columnsToDisplay];
   constructor(
     private apiService: ApiService,
     private notification: NotificationService,

@@ -2,9 +2,10 @@ import { Component } from "@angular/core";
 import { LogoComponent } from "../../logo/logo.component";
 import { HeaderUserMenuComponent } from "../header-user-menu/header-user-menu.component";
 import { HeaderClockDateComponent } from "../header-clock-date/header-clock-date.component";
-// import { IsMobileDirective } from "../../directives/is-mobile.directive";
-import { IsTabletDirective } from "../../directives/is-tablet.directive";
-import { IsLaptopDirective } from "../../directives/is-laptop.directive";
+
+import { IsTabletDirective } from "../../../directives/is-tablet.directive";
+import { IsLaptopDirective } from "../../../directives/is-laptop.directive";
+
 import { NavBarComponent } from "../nav-bar/nav-bar.component";
 import { ResponsiveService } from "../../../services/responsive.service";
 import { Observable } from "rxjs";

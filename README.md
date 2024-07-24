@@ -6,17 +6,12 @@ Greetings and welcome on my news website!
 
 My SRM (Sales and Relationship Management) system for a pawn shop helps manage customer interactions, track pawned items, streamline sales processes, and maintain comprehensive records. It enhances customer service by providing detailed customer history, automates communication, and ensures compliance with regulatory requirements. The system also includes inventory management, transaction tracking, and reporting features, improving operational efficiency and aiding in decision-making for the pawn shop.
 
-## Sections of the website
-
 # How to Run the Project
 
 Simply type in the [link](https://alessioitaliano.github.io/starbeam-pawn-frontend/), and let
 the magic unfold.
 
-# Lighthouse report
-
-The website demonstrates excellent performance metrics when tested on the
-Lighthouse report.
+![HeroSection](https://github.com/AlessioItaliano/starbeam-pawn-frontend/blob/main/public/assets/images/main.png)
 
 # Used technologies
 

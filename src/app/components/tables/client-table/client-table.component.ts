@@ -1,43 +1,61 @@
-import { AfterViewInit, Component, ViewChild, OnInit } from "@angular/core";
-import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
-import { MatSort, MatSortModule } from "@angular/material/sort";
-import { MatTableDataSource, MatTableModule } from "@angular/material/table";
-import { MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { Component, OnInit } from "@angular/core";
+import { MatTableDataSource } from "@angular/material/table";
+
 import { ApiService } from "../../../services/api.service";
+// import { LoaderService } from "../../../services/loader.service";
+
 import { IClient } from "../../../interface/client.interface";
+import { IColumnConfig } from "../../../interface/column-config.interface";
+// import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { TableComponent } from "../table/table.component";
 import { LoaderService } from "../../../services/loader.service";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @Component({
   selector: "app-client-table",
   standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-  ],
+  imports: [TableComponent],
   templateUrl: "./client-table.component.html",
   styleUrls: ["./client-table.component.scss"],
 })
-export class ClientTableComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = [
-    "id",
-    "client",
-    "email",
-    "phone",
-    "passport",
-    "taxNumber",
+export class ClientTableComponent implements OnInit {
+  public columnConfigs: IColumnConfig[] = [
+    // {
+    //   columnDef: "id",
+    //   header: "ID",
+    //   cell: (element: IClient) => `${element._id}`,
+    // },
+    {
+      columnDef: "client",
+      header: "Client",
+      cell: (element: IClient) =>
+        `${element.lastName} ${element.firstName} ${element.patronymic}`,
+    },
+    {
+      columnDef: "email",
+      header: "Email",
+      cell: (element: IClient) => `${element.email}`,
+    },
+    {
+      columnDef: "phone",
+      header: "Phone",
+      cell: (element: IClient) => `${element.phone}`,
+    },
+    {
+      columnDef: "passport",
+      header: "Passport",
+      cell: (element: IClient) =>
+        `${element.passport.passportSerie} ${element.passport.passportNumber}`,
+    },
+    {
+      columnDef: "taxNumber",
+      header: "Tax number",
+      cell: (element: IClient) => `${element.taxNumber}`,
+    },
   ];
-  dataSource: MatTableDataSource<IClient> = new MatTableDataSource<IClient>();
-  itemsBase: IClient[] = [];
-  isLoading: boolean = true;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  public dataSource: MatTableDataSource<IClient> =
+    new MatTableDataSource<IClient>();
+  public itemsBase: IClient[] = [];
 
   constructor(
     private apiService: ApiService,
@@ -49,22 +67,7 @@ export class ClientTableComponent implements OnInit, AfterViewInit {
     this.apiService.getAllClients().subscribe((data: IClient[]) => {
       this.itemsBase = data;
       this.dataSource.data = this.itemsBase;
-      this.isLoading = false;
       this.loaderService.hide();
     });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 }

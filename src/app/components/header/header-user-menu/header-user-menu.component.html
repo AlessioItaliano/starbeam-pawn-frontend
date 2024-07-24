@@ -1,4 +1,4 @@
-<button mat-button [matMenuTriggerFor]="menuUser" class="userMenu">
+<button mat-button [matMenuTriggerFor]="menuUser" class="user-menu__container">
   @if(currentUserProfile(); as currentUserProfile){
   <div class="user-menu">
     <img
@@ -23,11 +23,8 @@
   }
 </button>
 <mat-menu #menuUser="matMenu" class="mat-menu-panel">
-  <button mat-menu-item>
-    Profile
-    <!-- <a [routerLink]="['/departments/`${department._id}`']">
-      {{ department.name }}
-    </a> -->
+  <button mat-menu-item (click)="onLogout()">
+    <mat-icon>logout</mat-icon>
+    <span>Log out</span>
   </button>
-  <button mat-menu-item (click)="onLogout()">Exit</button>
 </mat-menu>

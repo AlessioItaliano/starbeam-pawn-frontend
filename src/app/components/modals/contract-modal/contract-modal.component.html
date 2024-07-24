@@ -1,0 +1,127 @@
+<div class="contract__container" id="pdf-contract">
+  <table>
+    <thead>
+      <tr>
+        <td width="75px" class="content"><app-logo></app-logo></td>
+        <td width="300px" class="content">
+          <h3 class="title h3">Pawn Agreement</h3>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="date-content">
+          {{ data.dateOfAcceptance | date }}
+        </td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td colspan="2" class="content">
+          <p>
+            <span class="label">Order status</span><b class="status">Success</b>
+          </p>
+          <p><span class="label">Transaction ID</span> {{ data._id }}</p>
+          <p>
+            <span class="label">Expiration date</span>
+            {{ data.dateValidUntil | date }}
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td class="spacer"></td>
+      </tr>
+      <tr>
+        <td class="half-width content">
+          <p>
+            <span class="label">Client</span> {{ data.clientId.lastName }}
+            {{ data.clientId.firstName }} {{ data.clientId.patronymic }}
+          </p>
+          <p>
+            <span class="label">Passport</span>
+            {{ data.clientId.passport.passportSerie }}
+            {{ data.clientId.passport.passportNumber }}
+            {{
+              data.clientId.passport.passportDateOfIssue | date : "dd.MM.yyyy"
+            }}
+          </p>
+          <p>
+            <span class="label">Tax number</span> {{ data.clientId.taxNumber }}
+          </p>
+        </td>
+        <td class="half-width content">
+          <p><span class="label">Email</span> {{ data.clientId.email }}</p>
+          <p><span class="label">Phone</span> {{ data.clientId.phone }}</p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="items-title">Items</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="items">
+          <p>
+            {{ data.itemName }}
+            <span class="item-description"> {{ data.description }}</span>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td class="content-right"><small>Item value</small></td>
+        <td class="content-right" width="80">
+          <small> {{ data.priceHistory[0].estimatedPrice }} UAH</small>
+        </td>
+      </tr>
+      <tr>
+        <td class="content-right"><small>Commission</small></td>
+        <td class="content-right">
+          <small>{{ data.priceHistory[0].commission }} UAH</small>
+        </td>
+      </tr>
+      <tr>
+        <td class="content-right"><strong>Total</strong></td>
+        <td class="content-right">
+          <strong>
+            {{
+              data.priceHistory[0].estimatedPrice +
+                data.priceHistory[0].commission
+            }}
+            UAH
+          </strong>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="alert">
+    Loan Agreement: By entering into a pawn agreement, the client agrees to
+    repay the loan amount plus any accrued interest and fees as specified in the
+    agreement. Default: If the client fails to repay the loan and reclaim their
+    pawned item(s) by the specified due date, the item(s) will be considered in
+    default and ownership will transfer to the pawn shop. Interest Rates: The
+    interest rates and fees applicable to the pawn loan are clearly outlined in
+    the agreement. These rates are subject to change based on state regulations
+    and the terms of the agreement. Redemption: Clients have the right to redeem
+    their pawned items by paying the total loan amount, including any interest
+    and fees, on or before the due date specified in the pawn agreement. Storage
+    Fees: If a client requests an extension on their loan period, additional
+    storage fees may apply. These fees will be calculated based on the duration
+    of the extension and are payable upon item redemption. Identification:
+    Clients must provide valid identification when pawning items. The pawn shop
+    reserves the right to refuse service if proper identification is not
+    provided. Condition of Items: All items must be in good condition and free
+    of any liens or encumbrances. The pawn shop reserves the right to inspect
+    items and refuse any that do not meet these criteria. Confidentiality: All
+    transactions and client information are confidential. The pawn shop will not
+    disclose any personal information to third parties unless required by law.
+    Dispute Resolution: Any disputes arising from the pawn agreement will be
+    resolved through arbitration or as stipulated by local regulations.
+    Governing Law: The terms and conditions of the pawn agreement are governed
+    by the laws of the state in which the pawn shop operates.
+  </div>
+</div>
+<div>
+  <button mat-raised-button class="btn btn-dark" (click)="getPdf(data._id)">
+    Download contract
+  </button>
+</div>

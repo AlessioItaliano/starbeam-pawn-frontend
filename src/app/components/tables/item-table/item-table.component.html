@@ -12,56 +12,18 @@
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
-    <ng-container matColumnDef="signedDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Signed Date</th>
-      <td mat-cell *matCellDef="let row">{{ row.dateOfAcceptance | date }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="expirationDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Expiration Date</th>
-      <td mat-cell *matCellDef="let row">{{ row.dateValidUntil | date }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
-      <td mat-cell *matCellDef="let row">{{ row.category }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="itemName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Item Name</th>
-      <td mat-cell *matCellDef="let row">{{ row.itemName }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-      <td mat-cell *matCellDef="let row">{{ row.description }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
-      <td mat-cell *matCellDef="let row">{{ row.estimatedPrice }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="commission">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Commission</th>
-      <td mat-cell *matCellDef="let row">{{ row.commission }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="client">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Client</th>
-      <td mat-cell *matCellDef="let row">
-        {{ row.clientId.lastName }} {{ row.clientId.firstName }}
-        {{ row.clientId.patronymic }}
+    @for( column of columnConfigs; track $index){
+    <ng-container matColumnDef="{{ column.columnDef }}">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ column.header }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{
+          column.pipe ? column.pipe(column.cell(element)) : column.cell(element)
+        }}
       </td>
     </ng-container>
-
-    <ng-container matColumnDef="pawnUser">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee</th>
-      <td mat-cell *matCellDef="let row">
-        {{ row.pawnUser.lastName }} {{ row.pawnUser.firstName }}
-        {{ row.pawnUser.patronymic }}
-      </td>
-    </ng-container>
+    }
 
     <ng-container matColumnDef="expand">
       <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
@@ -74,11 +36,11 @@
             $event.stopPropagation()
           "
         >
-          @if (expandedElement === element) {
+          <!-- @if (expandedElement === element) {
           <mat-icon>keyboard_arrow_up</mat-icon>
           } @else {
           <mat-icon>keyboard_arrow_down</mat-icon>
-          }
+          } -->
         </button>
       </td>
     </ng-container>
@@ -106,6 +68,13 @@
             >
               Show Price History
             </button> -->
+            <button
+              mat-raised-button
+              class="btn"
+              (click)="toGetContract(element)"
+            >
+              Get contract
+            </button>
             <button
               mat-raised-button
               class="btn"
@@ -146,3 +115,6 @@
     aria-label="Select page of users"
   ></mat-paginator>
 </div>
+<!-- <div>
+  <app-pdf-document></app-pdf-document>
+</div> -->

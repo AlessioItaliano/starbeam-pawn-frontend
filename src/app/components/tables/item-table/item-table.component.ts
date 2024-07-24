@@ -1,18 +1,9 @@
-import {
-  AfterViewInit,
-  Component,
-  ViewChild,
-  OnInit,
-  inject,
-} from "@angular/core";
+import { Component, ViewChild, inject } from "@angular/core";
 import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
 import { MatSort, MatSortModule } from "@angular/material/sort";
 import { MatTableDataSource, MatTableModule } from "@angular/material/table";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { ApiService } from "../../../services/api.service";
-import { Router } from "@angular/router";
-import { IItems } from "../../../interface/items.interface";
 import { CommonModule } from "@angular/common";
 import { MatIconModule } from "@angular/material/icon";
 import {
@@ -23,8 +14,16 @@ import {
   trigger,
 } from "@angular/animations";
 import { MatDialog } from "@angular/material/dialog";
-import { ItemModalComponent } from "../../modals/item-modal/item-modal.component";
+
+import { ApiService } from "../../../services/api.service";
+import { LoaderService } from "../../../services/loader.service";
 import { NotificationService } from "../../../services/notification.service";
+
+import { IItems } from "../../../interface/items.interface";
+import { IColumnConfig } from "../../../interface/column-config.interface";
+
+import { ItemModalComponent } from "../../modals/item-modal/item-modal.component";
+import { ContractModalComponent } from "../../modals/contract-modal/contract-modal.component";
 
 @Component({
   selector: "app-item-table",
@@ -72,22 +71,71 @@ export class ItemTableComponent {
     "pawnUser",
   ];
 
-  columnsToDisplayWithExpand: string[] = [
-    // ...this.columnsToDisplay.map((column: any) => column.key),
-    ...this.columnsToDisplay,
-    // "description",
+  public columnConfigs: IColumnConfig[] = [
+    {
+      columnDef: "signedDate",
+      header: "Signed Date",
+      cell: (element: any) => element.dateOfAcceptance,
+      pipe: (value: any) => new Date(value).toLocaleDateString(),
+    },
+    {
+      columnDef: "expirationDate",
+      header: "Expiration Date",
+      cell: (element: any) => element.dateValidUntil,
+      pipe: (value: any) => new Date(value).toLocaleDateString(),
+    },
+    {
+      columnDef: "category",
+      header: "Category",
+      cell: (element: any) => element.category,
+    },
+    {
+      columnDef: "itemName",
+      header: "Item Name",
+      cell: (element: any) => element.itemName,
+    },
+    {
+      columnDef: "description",
+      header: "Description",
+      cell: (element: any) => element.description,
+    },
+    {
+      columnDef: "price",
+      header: "Price",
+      cell: (element: any) => element.estimatedPrice,
+    },
+    {
+      columnDef: "commission",
+      header: "Commission",
+      cell: (element: any) => element.commission,
+    },
+    {
+      columnDef: "client",
+      header: "Client",
+      cell: (element: any) =>
+        `${element.clientId.lastName} ${element.clientId.firstName} ${element.clientId.patronymic}`,
+    },
+    {
+      columnDef: "pawnUser",
+      header: "Employee",
+      cell: (element: any) =>
+        `${element.pawnUser.lastName} ${element.pawnUser.firstName} ${element.pawnUser.patronymic}`,
+    },
   ];
 
+  columnsToDisplayWithExpand: string[] = [...this.columnsToDisplay];
   constructor(
     private apiService: ApiService,
-    private router: Router,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit() {
+    this.loaderService.show();
     this.apiService.getAllItems().subscribe((data: IItems[]) => {
       this.itemsBase = data;
       this.dataSource.data = this.itemsBase;
+      this.loaderService.hide();
     });
   }
 
@@ -111,19 +159,22 @@ export class ItemTableComponent {
     return expirationDate > currentDate;
   }
 
-  // toShowPriceHistory(item: any): void {
-  //   console.log(item.priceHistory);
-  // }
+  toGetContract(item: any): void {
+    this.dialog.open(ContractModalComponent, {
+      data: item,
+    });
+  }
 
   toUpdate(item: any): void {
-    console.log(item._id);
-    console.log(item.priceHistory);
     const dialogRef = this.dialog.open(ItemModalComponent, {
-      data: { price: item.estimatedPrice, commission: item.commission, priceHistory: item.priceHistory},
+      data: {
+        price: item.estimatedPrice,
+        commission: item.commission,
+        priceHistory: item.priceHistory,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
       if (result !== undefined) {
         this.apiService
           .changeItemPrice(item._id, {

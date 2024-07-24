@@ -120,7 +120,7 @@ export class ItemFormComponent {
         console.log(res);
         this.notification.showSuccess("Item created successfully");
         this.clientDataService.setClientData(null);
-        this.router.navigate(["/"]);
+        this.router.navigate(["/transaction"]);
       },
       (error: any) => {
         console.error(error.message);

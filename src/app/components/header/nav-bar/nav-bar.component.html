@@ -1,0 +1,89 @@
+<mat-toolbar class="nav-bar">
+  <button
+    mat-icon-button
+    (click)="drawer.toggle()"
+    class="menu-btn"
+    *ngIf="isMobile$ | async"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div
+    class="nav-bar__container"
+    *ngIf="!(isMobile$ | async)"
+    appIsMobile
+    appIsTablet
+    appIsLaptop
+  >
+    <mat-nav-list class="nav-bar__list">
+      <a
+        mat-list-item
+        routerLink="/transaction"
+        class="nav-bar__item"
+        routerLinkActive="mdc-list-item--activated"
+        >Transactions</a
+      >
+      <a
+        mat-list-item
+        routerLink="/clients"
+        routerLinkActive="mdc-list-item--activated"
+        class="nav-bar__item"
+        >Clients</a
+      >
+      <a
+        mat-list-item
+        routerLink="/archives"
+        routerLinkActive="mdc-list-item--activated"
+        class="nav-bar__item"
+        >Archives</a
+      >
+    </mat-nav-list>
+    <a mat-raised-button routerLink="/create-contract">Add new transaction</a>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+  <mat-drawer #drawer mode="over" class="example-drawer">
+    <div class="close-btn__container">
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-nav-list>
+      <a
+        mat-list-item
+        routerLink="/transaction"
+        routerLinkActive="active-link"
+        (click)="drawer.toggle()"
+        >Transactions</a
+      >
+      <a
+        mat-list-item
+        routerLink="/clients"
+        routerLinkActive="active-link"
+        (click)="drawer.toggle()"
+        >Clients</a
+      >
+      <a
+        mat-list-item
+        routerLink="/archives"
+        routerLinkActive="active-link"
+        (click)="drawer.toggle()"
+        >Archives</a
+      >
+    </mat-nav-list>
+    <div class="btn__container">
+      <a
+        mat-raised-button
+        routerLink="/create-contract"
+        (click)="drawer.toggle()"
+        >Add new transaction</a
+      >
+
+      <button mat-menu-item (click)="onLogout()" class="btn btn-light">
+        <mat-icon>logout</mat-icon>
+        <span>Log out</span>
+      </button>
+    </div>
+  </mat-drawer>
+</mat-drawer-container>

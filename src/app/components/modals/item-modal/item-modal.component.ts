@@ -34,8 +34,8 @@ import { MatTableModule } from "@angular/material/table";
 })
 export class ItemModalComponent {
   readonly dialogRef = inject(MatDialogRef<ItemModalComponent>);
-  readonly data = inject<any>(MAT_DIALOG_DATA);
-
+ 
+ readonly data = inject<any>(MAT_DIALOG_DATA);
   price: number = this.data.price || 0;
   commission: number = this.data.commission || 0;
   priceHistory: any = this.data.priceHistory;

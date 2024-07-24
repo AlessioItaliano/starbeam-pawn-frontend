@@ -1,5 +1,6 @@
-<header class="header">
+<header class="header" *ngIf="!(isMobile$ | async)" appIsTablet appIsLaptop>
   <app-logo></app-logo>
   <app-header-clock-date></app-header-clock-date>
   <app-header-user-menu></app-header-user-menu>
 </header>
+<app-nav-bar></app-nav-bar>

@@ -12,6 +12,7 @@ import { ApiService } from "../../../services/api.service";
 import { Router } from "@angular/router";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
+import { NotificationService } from "../../../services/notification.service";
 
 @Component({
   selector: "app-login-form",
@@ -46,18 +47,23 @@ export class LoginFormComponent {
     event.stopPropagation();
   }
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private notification: NotificationService
+  ) {}
 
   onSubmit(): void {
     if (this.logInForm.valid) {
       //@ts-ignore
       this.apiService.login(this.logInForm.value).subscribe(
         (res: any) => {
-          console.log(res);
-          this.router.navigate(["/"]);
+          this.router.navigate(["/transaction"]);
+          this.notification.showSuccess("Welcome");
         },
         (error: any) => {
           console.error(error.message);
+          this.notification.showError("Something went wrong. Try again...");
         }
       );
     }

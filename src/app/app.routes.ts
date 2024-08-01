@@ -10,9 +10,9 @@ import { CreateContractPageComponent } from "./pages/create-contract-page/create
 import { ArchivesPageComponent } from "./pages/archives-page/archives-page.component";
 
 export const routes: Routes = [
-  { path: "login", component: LoginPageComponent },
+  { path: "", component: LoginPageComponent },
   {
-    path: "",
+    path: "pawn",
     component: LayoutComponent,
     children: [
       { path: "transaction", component: TransactionPageComponent },

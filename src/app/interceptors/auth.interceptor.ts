@@ -1,8 +1,8 @@
-import { HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { ApiService } from '../services/api.service';
-import { catchError, throwError } from 'rxjs';
+import { HttpInterceptorFn } from "@angular/common/http";
+import { inject } from "@angular/core";
+import { Router } from "@angular/router";
+import { ApiService } from "../services/api.service";
+import { catchError, throwError } from "rxjs";
 
 export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const token: string | null = inject(ApiService).authToken;
@@ -18,7 +18,7 @@ export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error) => {
       if (error.status === 401) {
-        router.navigate(['/login']);
+        router.navigate(["/"]);
       }
       return throwError(error);
     })

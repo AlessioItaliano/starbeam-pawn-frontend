@@ -26,7 +26,7 @@ export class AuthLogoutService {
         })
       )
       .subscribe(() => {
-        this.router.navigate(["/login"]);
+        this.router.navigate(["/"]);
       });
   }
 }

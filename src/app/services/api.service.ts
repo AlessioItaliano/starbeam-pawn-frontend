@@ -65,8 +65,8 @@ export class ApiService {
       );
   }
 
-  logout(): Observable<any> {
-    return this.http.post(`${this.baseApiUrl}/auth/logout`, {}).pipe(
+  logout(): Observable<void> {
+    return this.http.post<void>(`${this.baseApiUrl}/auth/logout`, {}).pipe(
       tap(() => {
         this.authToken = null;
         this.cookiesService.delete("token");
